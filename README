@@ -1,0 +1,182 @@
+# PCLP Tema1
+
+Urmatorul fisier contine informatii despre rezolvarea problemelor propuse in 
+propuse in tema 1 de la PCLP.
+
+Cea mai mare provocare intalnita a fost rezolvarea cat mai eficienta a 
+problemelor propuse intr-un timp cat mai scurt. Aceasta tema a fost rezolvata
+pe parcursul a 7 zile. In viitor, imi doresc rezolvarea mai rapida a 
+cerintelor.
+
+Cuprins
+1. Problema cutiilor
+2. Numere complexe lungi
+3. Transmisie bruiata
+4. Car Dealer
+
+
+# 1. Problema cutiilor
+
+Rezolvarea acestei probleme mi-a luat aproximativ 5 de ore. Cerinta A a fost 
+implementata in aproximativ 1 ora, iar cerinta B in 3 ore, restul de o ora a
+fost alocat pentru revizuirea unui coding style corespunzator.
+
+Problema contine 4 functii: 
+* int cutii(int *v, int nr, int i) - returneaza pentru prizonierul i, numarul 
+regasit la pasul nr. 
+
+* void cerintaA(int *a, int n) - pentru fiecare dintre cei n prizonieri, 
+folosindu-ne de functia cutii(), verificam daca deschizand maxim n/2 cutii
+acesta isi gaseste numarul. In caz afirmativ variabila ok devine 1 si 
+parcurgerea se opreste. Daca pentru cel putin un prizonier variabila ok ramane
+0, insemna ca acesta nu si-a gasit numarul, deci au pierdut jocul. Daca se 
+afiseaza "Nu", parcurgerea se opreste. Altfel, daca nu s-a afisat nici un
+"Nu", se afiseaza "Da".
+
+* void cerintaB(int *a, int n) - prima data, initializez un vector b, in care
+pe pozitia i voi memora aparitia elementul a[i] intr-un ciclu. Daca acesta este
+folosit intr-un ciclu, valoarea lui b[i] este 1, altfel b[i] va avea 
+valoarea 0. Pentru fiecare dintre cei n prizonieri, verific daca in cel mult n 
+pasi se ajunge la cutia cu numarul sau corespunzator. Daca acest lucru se 
+intampla inseamna ca v[i] genereaza un ciclu. Daca b[i] nu a fost folosit 
+anterior intr-un ciclu, verificam daca ciclul este format doar dintr-un numar, 
+sau dintr-o secventa de mai multe numere. Daca este format doar dintr-un numar 
+acesta se afiseaza urmat de caracterul '\n', altfel, daca avem o secventa de 
+mai multe numere, parcurgem toate numerele de la 1 la j si le afisam, avand 
+grija sa actualizam folosirea elementelor in vectorul b. Dupa fiecare ciclu, 
+afisam caracterul '\n'.
+
+* int main() - in aceasta functie, citesc valoarea variabilei n, reprezentand 
+numarul de prizonieri si valorile care se gasesc in cele n cutii, pe care le
+memoram in vectorul a. Apelez functia cerintaA() si cerintaB().
+
+# 2. Numere complexe lungi
+
+Rezolvarea acestei probleme mi-a luat aproximativ 2 zile. In prima zi am 
+reusit sa implementez adunarea numerelor atunci cand semnul acestora era 
+acelasi, spre exemplu 0 si 0 sau 1 si 1. In cealalta zi, am implementat cazul 
+cand biti de semn difereau, deci intre cele 2 numere trebuia sa se realizeze 
+operatia de scadere.
+
+Probleme contine 11 functii:
+* int transf_char_int(char c) - transforma un char in int-ul corespunzator.
+Spre exemplu, daca caracterul c este '9', functia va returna rezultatul 
+(int) 9.
+
+* char transf_int_char(int nr) - transforma un int in char-ul corespunzator.
+Spre exemplu, daca numarul nr este 9, functia va returna rezultatul 
+(char) '9'.
+
+* void adunare_numere(char *a, char *b, int i, int *plus) - memoreaza in a[i]
+rezultatul adunarii dintre a[i] si b[i] din sirurile initiale si in parametrul
+plus se salveaza daca se va aduna 0 sau 1, in cazul in care suma cifrelor 
+depaseste 10.
+
+* void scadere_numereab(char *a, char *b, int i, int *plus) - reprezinta cazul
+in care numarul memorat in a este mai mare decat numarul memorat in b si 
+memoreaza in a[i] rezultatul scaderii dintre a[i] si b[i] din sirurile 
+initiale si in parametrul plus se va salva daca se va aduna 0 sau -1, 
+in cazul in care diferenta cifrelor este mai mica decat 0.
+
+* void scadere_numereba(char *a, char *b, int i, int *plus) - reprezinta cazul
+in care numarul memorat in b este mai mare decat numarul memorat in a si 
+memoreaza in a[i] rezultatul scaderii dintre b[i] si a[i] din sirurile 
+initiale si in parametrul plus se va salva daca se va aduna 0 sau -1, 
+in cazul in care diferenta cifrelor este mai mica decat 0.
+
+* void scadere_realeab(char *a, char *b, int n) - scade partile reale ale 
+numerelor atunci cand numarul real memorat in a este mai mare decat numarul
+real memorat in b.
+
+* void scadere_realeba(char *a, char *b, int n) - scade partile reale ale 
+numerelor atunci cand numarul real memorat in b este mai mare decat numarul
+real memorat in a.
+
+* void scadere_imaginarab(char *a, char *b, int n) - scade partile imaginare 
+ale numerelor atunci cand numarul imaginar memorat in a este mai mare decat
+numarul imaginar memorat in b.
+
+* void scadere_imaginarba(char *a, char *b, int n) - scade partile imaginare 
+ale numerelor atunci cand numarul imaginar memorat in b este mai mare decat
+numarul imaginar memorat in a.
+
+* void calcul(char *a, char *b, int n) - calculeaza rezultatul obtinut prin
+adunarea partilor reale si imaginare ale numerelor memorate in sirurile a si
+b. In functie de bitul de semn al acestora se apeleaza functia care realizeaza
+operatia corecta.
+
+* int main() - se citesc de la tastatura sirul a, operatia si sirul b, 
+succesiv, pana cand caracterul operatia este egal cu '0'. Daca operatia 
+este '-', se schimba bitul de semn al partii reale si imaginare al numarului
+b si se apeleaza functia calcul(), pentru fiecare pereche de numere.
+
+# 3. Transmisie bruiata
+
+Rezolvarea acestei probleme mi-a luat aproximativ 3 zile. In prima zi am 
+reusit sa implementez codificarea B si decodificarea B, in urmatoarea zi 
+codificarea A si decodificarea A, iar in ultima zi, am facut debugging, 
+intrucat in cod mai existau probleme de rationament.
+
+Problema contine 7 functii:
+
+* char transfASCII(char c, int n, int semn) - aceasta functie returneaza
+caracterul aflat cu n pozitii dupa sau inainte, in functie de valoarea 
+parametrului semn. Daca semn este egal cu 1, atunci se va returna caracterul 
+aflat cu n pozitii dupa caracterul c, daca semn este egal cu -1, se va returna
+caracterul aflat cu n pozitii inaintea caracterului c.
+
+* void codifB(char *s, int n) - aceasta functie realizeaza codificarea B, 
+copiind  ultimele n caractere ale lui *s in *p si realizand transformarea
+caracterelor exact ca in cerinta. In *aux se copiaza caracterele din *s
+care nu trebuiesc modificate si ulterior se concateneaza rezultatul din p si
+aux. La final, se memoreaza in *s rezultatul final.
+
+* void decodifB(char *s, int n) - aceasta functie realizeaza operatia inversa
+a functiei codifB().
+
+* void sort(char *v, int n, int *a) - in aceasta functie se implementeaza 
+sortarea pentru un sir de caractere v si se memoreaza in vectorul a, indicii
+corespunzatori pozitiei pe care le ocupau literele in cuvantul initial
+
+* void codifA(char *s, char *c) - initial, se calculeaza numarul de linii pe 
+care le va avea matricea in care vom codifica textul memorat in sirul *s.
+Ulterior se construieste matricea, daca toate caracterele din sir au fost 
+memorate pe o pozitie in matrice, pozitiile ramase libere se completeaza cu 
+' ' (space). Se apeleaza functia sort(). In functie de rezultatul acesteia, se
+memoreaza rezultatul parcurgand matricea pe coloane.
+
+* void decodifA(char *s, char *c) - aceasta functie realizeaza operatia inversa
+a functiei codifA(). 
+
+* int main() - se citeste sirul s, si cerinta, in functie de cerinta
+se apeleaza functiile corespunzatoare rezolvarii cerintei. Programul se 
+sfarseste atunci cand se introduce cuvantul STOP. 
+
+# 4. Car Dealer
+
+Rezolvarea acestei probleme mi-a luat aproximativ 3 de ore. Rezolvare 
+mi-a luat 2 ore, iar restul de o ora a fost alocat pentru revizuirea
+unui coding style corespunzator.
+
+Problema contine 6 functii:
+* int isalpha1(char c) - functia returneaza 1 daca caracterul c este o litera,
+respectiv 0 in caz contrar.
+
+* int isdigit1(char c) - functia returneaza 1 daca caracterul c este o cifra,
+respectiv 0 in caz contrar.
+
+* void ceriA(masini *m, int n, int *nr) - in vectorul nr, se pastreaza numarul 
+de masini de fiecare tip (benzina, motorina, hibrid, electric)
+
+* void ceriB(masini *m, int n, double *consum, double *pret) - in vectorii 
+consum si pret, se memoreaza pe pozitia i, consumul, resprectiv pretul platit
+pentru masina numarul i.
+
+* void ceriC(masini *m, int n, int *v) - pentru fiecare dintre cele n masini 
+se verifica daca numele acestora indeplineste conditiile pentru a fi numar 
+corect. In vectorul v, pe pozia, se memoreaza 1, daca numarul este corect,
+respectiv 0, daca numarul este incorect.
+
+* int main() - se citesc datele de la tastatura si se aloca dinamic memoria 
+lui masini *m. Ulterior, in functie de cerinta se apeleaza functiile potrivite
+si se afiseaza rezultatele.
